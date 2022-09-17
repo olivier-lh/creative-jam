@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1411553853970449704}
   - component: {fileID: 1528326611795408332}
   m_Layer: 0
-  m_Name: Tetromino
-  m_TagString: Untagged
+  m_Name: TBloc
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominoPrefab: {fileID: 6374304064631939357}
   amountOfPlatforms: 2
+  isTree: 0
+  squarePrefab: {fileID: 0}
 --- !u!1 &6792374069402664707
 GameObject:
   m_ObjectHideFlags: 0

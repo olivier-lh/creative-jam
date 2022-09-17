@@ -4,15 +4,16 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Ground
-  - DeathZone
   - JumpTrigger
+  - Ground
   - FlipTrigger
+  - DeathZone
+  - Square
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Water
+  - 
   - Water
   - UI
   - 
