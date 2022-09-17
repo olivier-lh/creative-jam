@@ -16,7 +16,6 @@ public class Movement : MonoBehaviour
 
     private bool canLand = false;
     
-    [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private BoxCollider2D jumpTriggerBox2D;
 
     // Start is called before the first frame update
@@ -41,7 +40,7 @@ public class Movement : MonoBehaviour
     {
         float extraHeigthText = 0.2f;
         RaycastHit2D rayCastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down,
-            boxCollider2D.bounds.extents.y + extraHeigthText, platformLayerMask);
+            boxCollider2D.bounds.extents.y + extraHeigthText);
         return rayCastHit.collider != null;
     }
 
