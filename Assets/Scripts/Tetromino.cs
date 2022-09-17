@@ -10,6 +10,7 @@ public class Tetromino : MonoBehaviour
     [SerializeField] int amountOfPlatforms;
     [SerializeField] bool isTree;
     [SerializeField] GameObject squarePrefab;
+    [SerializeField] Sprite bigTreeSprite;
 
     Tetromino menuParent;
     int currentAmountOfPlatforms;
@@ -44,10 +45,12 @@ public class Tetromino : MonoBehaviour
                     if (intersectingRight.Length != 0)
                     {
                         growsRight = false;
+                        gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
                     }
                     else if (intersectingLeft.Length != 0)
                     {
                         growsRight = true;
+                        gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
                     }
                     else
                     {
@@ -96,8 +99,13 @@ public class Tetromino : MonoBehaviour
         {
             for(int i = 0; i < 3; i++)
             {
+                GameObject block = transform.GetChild(1).gameObject;
+                
                 int direction = growsRight ? 1 : -1;
-                Instantiate(squarePrefab, this.transform.position + new Vector3(direction * (i + 1), 0, 0), Quaternion.identity);
+                block.transform.localScale = new Vector3(3, 1, 1);
+                block.transform.position = new Vector3(this.transform.position.x + direction, this.transform.position.y, this.transform.position.z);
+                gameObject.GetComponentInChildren<SpriteRenderer>().sprite = bigTreeSprite;
+                gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
             }
         }
     }

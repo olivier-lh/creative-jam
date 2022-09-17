@@ -50,6 +50,7 @@ MonoBehaviour:
   amountOfPlatforms: 2
   isTree: 1
   squarePrefab: {fileID: 7243565246716030331, guid: 7dcef3b68062e464b98ff9f19c96a245, type: 3}
+  bigTreeSprite: {fileID: 21300000, guid: 570e07cc6fbb42d4e9f39bc0cd835f27, type: 3}
 --- !u!1 &2125684877702272658
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,9 +338,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5044667899327842600, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_SpriteTilingProperty.drawMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7524422127153836525, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_Name
       value: Square
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ad2924a4ec37c744e9de3675c8ca05ec, type: 3}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_DrawMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
