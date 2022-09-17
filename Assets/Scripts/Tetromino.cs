@@ -9,13 +9,17 @@ public class Tetromino : MonoBehaviour
     [SerializeField] GameObject tetrominoPrefab;
     [SerializeField] int amountOfPlatforms;
     [SerializeField] bool isTree;
+    [SerializeField] bool isRock;
     [SerializeField] GameObject squarePrefab;
     [SerializeField] Sprite bigTreeSprite;
+    [SerializeField] Sprite rockSprite;
+    [SerializeField] bool isMenuItem = true;
+    [SerializeField] bool isLevelBlock = false;
 
     Tetromino menuParent;
     int currentAmountOfPlatforms;
     bool isDragged = false;
-    bool isMenuItem = true;
+    
     bool growsRight = true;
     TextMeshProUGUI tmPro;
 
@@ -25,6 +29,13 @@ public class Tetromino : MonoBehaviour
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         tmPro.text = isMenuItem ? amountOfPlatforms.ToString() : "";
         currentAmountOfPlatforms = amountOfPlatforms;
+        if(isRock)
+        {
+            foreach(SpriteRenderer sr in transform.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.sprite = rockSprite;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -90,7 +101,7 @@ public class Tetromino : MonoBehaviour
 
     public void updateText()
     {
-        tmPro.text = currentAmountOfPlatforms.ToString();
+        tmPro.text = isMenuItem && !isLevelBlock ? currentAmountOfPlatforms.ToString() : "";
     }
 
     public void fastForward()
@@ -108,19 +119,49 @@ public class Tetromino : MonoBehaviour
                 gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
             }
         }
+        else if(isRock && !isMenuItem)
+        {
+            StartCoroutine(ErodeRocks());
+        }
     }
-    public void Reset()
+    public void ResetTetro()
     {
-        if (isMenuItem)
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            GameObject childObject = this.transform.GetChild(i).gameObject;
+
+            if (childObject.GetComponent<SpriteRenderer>() != null)
+            {
+                childObject.SetActive(true);
+            }
+        }
+        if (isMenuItem || isLevelBlock)
         {
             currentAmountOfPlatforms = amountOfPlatforms;
-            gameObject.SetActive(true);
             if (tmPro != null)
                 updateText();
         }
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator ErodeRocks()
+    {
+        int numOfChildren = this.transform.childCount;
+        for (int i = 0; i < numOfChildren; i++)
+        {
+            GameObject childObject = this.transform.GetChild(i).gameObject;
+
+            if (childObject.GetComponent<SpriteRenderer>() != null)
+            {
+                childObject.SetActive(false);
+            }
+            if (childObject != null)
+            {
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }

@@ -23,6 +23,6 @@ public class ResetButton : MonoBehaviour
     void TaskOnClick()
     {
         foreach (Tetromino tetro in Resources.FindObjectsOfTypeAll(typeof(Tetromino)))
-            tetro.Reset();
+            tetro.ResetTetro();
     }
 }
