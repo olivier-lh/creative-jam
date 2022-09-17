@@ -8,6 +8,7 @@ public class Tetromino : MonoBehaviour
 {
     [SerializeField] GameObject tetrominoPrefab;
     [SerializeField] int amountOfPlatforms;
+    int currentAmountOfPlatforms;
     bool isDragged = false;
     bool isMenuItem = true;
     TextMeshProUGUI tmPro;
@@ -17,6 +18,7 @@ public class Tetromino : MonoBehaviour
     {
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         tmPro.text = isMenuItem ? amountOfPlatforms.ToString() : "";
+        currentAmountOfPlatforms = amountOfPlatforms;
     }
 
     // Update is called once per frame
@@ -42,21 +44,36 @@ public class Tetromino : MonoBehaviour
                 }
             }
         }
-        if(amountOfPlatforms == 0 && isMenuItem)
+        if(currentAmountOfPlatforms == 0 && isMenuItem)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
     public void DragNew()
     {
-        if(isMenuItem && amountOfPlatforms > 0)
+        if(isMenuItem && currentAmountOfPlatforms > 0)
         {
             GameObject instantiatedTetromino = Instantiate(tetrominoPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             instantiatedTetromino.GetComponent<Tetromino>().isDragged = true;
             instantiatedTetromino.GetComponent<Tetromino>().isMenuItem = false;
-            amountOfPlatforms--;
-            tmPro.text = amountOfPlatforms.ToString();
+            currentAmountOfPlatforms--;
+            tmPro.text = currentAmountOfPlatforms.ToString();
+        }
+    }
+
+    public void Reset()
+    {
+        if (isMenuItem)
+        {
+            currentAmountOfPlatforms = amountOfPlatforms;
+            gameObject.SetActive(true);
+            if(tmPro != null)
+                tmPro.text = currentAmountOfPlatforms.ToString();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
