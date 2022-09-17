@@ -9,8 +9,10 @@ public class Tetromino : MonoBehaviour
     [SerializeField] GameObject tetrominoPrefab;
     [SerializeField] int amountOfPlatforms;
     [SerializeField] bool isTree;
+    [SerializeField] bool isRock;
     [SerializeField] GameObject squarePrefab;
     [SerializeField] Sprite bigTreeSprite;
+    [SerializeField] Sprite rockSprite;
 
     Tetromino menuParent;
     int currentAmountOfPlatforms;
@@ -25,6 +27,13 @@ public class Tetromino : MonoBehaviour
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         tmPro.text = isMenuItem ? amountOfPlatforms.ToString() : "";
         currentAmountOfPlatforms = amountOfPlatforms;
+        if(isRock)
+        {
+            foreach(SpriteRenderer sr in transform.GetComponentsInChildren<SpriteRenderer>())
+            {
+                sr.sprite = rockSprite;
+            }
+        }
     }
 
     // Update is called once per frame
@@ -108,6 +117,10 @@ public class Tetromino : MonoBehaviour
                 gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
             }
         }
+        else if(isRock && !isMenuItem)
+        {
+            StartCoroutine(ErodeRocks());
+        }
     }
     public void Reset()
     {
@@ -121,6 +134,24 @@ public class Tetromino : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private IEnumerator ErodeRocks()
+    {
+        int numOfChildren = this.transform.childCount;
+        for (int i = 0; i < numOfChildren - 1; i++)
+        {
+            GameObject childObject = this.transform.GetChild(1).gameObject;
+
+            if (childObject.GetComponent<SpriteRenderer>() != null)
+            {
+                Destroy(childObject);
+            }
+            if (childObject != null)
+            {
+                yield return new WaitForSeconds(1);
+            }
         }
     }
 }
