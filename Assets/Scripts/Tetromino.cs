@@ -8,6 +8,9 @@ public class Tetromino : MonoBehaviour
 {
     [SerializeField] GameObject tetrominoPrefab;
     [SerializeField] int amountOfPlatforms;
+    [SerializeField] bool isTree;
+    [SerializeField] GameObject squarePrefab;
+
     Tetromino menuParent;
     int currentAmountOfPlatforms;
     bool isDragged = false;
@@ -71,6 +74,16 @@ public class Tetromino : MonoBehaviour
         tmPro.text = currentAmountOfPlatforms.ToString();
     }
 
+    public void fastForward()
+    {
+        if(isTree && !isMenuItem)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                Instantiate(squarePrefab, this.transform.position + new Vector3(1 * (i + 1), 0, 0), Quaternion.identity);
+            }
+        }
+    }
     public void Reset()
     {
         if (isMenuItem)
