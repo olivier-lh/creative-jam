@@ -7,13 +7,15 @@ TagManager:
   - Ground
   - DeathZone
   - JumpTrigger
+  - Square
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
   - Water
+  - Water
   - UI
-  - Platform
+  - 
   - 
   - 
   - 

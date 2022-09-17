@@ -368,6 +368,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetromino
       objectReference: {fileID: 0}
+    - target: {fileID: 6374304064631939357, guid: 4037293c8b6ef084a966987ac65ea39d, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4037293c8b6ef084a966987ac65ea39d, type: 3}
 --- !u!1 &1479400763

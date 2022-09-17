@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1411553853970449704}
   - component: {fileID: 1528326611795408332}
   m_Layer: 0
-  m_Name: Tetromino
-  m_TagString: Untagged
+  m_Name: LBloc
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalPosition.y
@@ -461,6 +461,10 @@ PrefabInstance:
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5044667899327842600, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7524422127153836525, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_Name

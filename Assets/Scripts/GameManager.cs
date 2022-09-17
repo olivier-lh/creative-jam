@@ -27,7 +27,6 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        Debug.Log("called");
         AttemptIsStarted = false;
         Debug.Log(respawnPoint.transform.position);
         Instantiate(player, respawnPoint.transform.position, Quaternion.identity);
