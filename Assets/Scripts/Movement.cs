@@ -9,14 +9,13 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private BoxCollider2D boxCollider2D;
     public Animator animator;
-    public GameManager gameManager;
+    private GameManager gameManager;
     
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float jumpForce = 10.0f;
 
     private bool canLand = false;
     
-    [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private BoxCollider2D jumpTriggerBox2D;
 
     // Start is called before the first frame update
@@ -42,7 +41,7 @@ public class Movement : MonoBehaviour
     {
         float extraHeigthText = 0.2f;
         RaycastHit2D rayCastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down,
-            boxCollider2D.bounds.extents.y + extraHeigthText, platformLayerMask);
+            boxCollider2D.bounds.extents.y + extraHeigthText);
         return rayCastHit.collider != null;
     }
 
