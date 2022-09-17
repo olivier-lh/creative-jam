@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,19 +12,26 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        RespawnPlayer();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (Tetromino tetro in Resources.FindObjectsOfTypeAll(typeof(Tetromino)))
+                tetro.fastForward();
+        }
     }
 
     public void RespawnPlayer()
     {
         AttemptIsStarted = false;
-        //Instantiate(player, respawnPoint.transform);
+        Debug.Log(respawnPoint.transform.position);
+        Instantiate(player, respawnPoint.transform.position, Quaternion.identity);
+        foreach (Tetromino tetro in Resources.FindObjectsOfTypeAll(typeof(Tetromino)))
+            tetro.Reset();
     }
 
     public void StartAttempt()

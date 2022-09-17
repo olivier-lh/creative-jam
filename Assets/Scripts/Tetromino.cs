@@ -8,6 +8,11 @@ public class Tetromino : MonoBehaviour
 {
     [SerializeField] GameObject tetrominoPrefab;
     [SerializeField] int amountOfPlatforms;
+    [SerializeField] bool isTree;
+    [SerializeField] GameObject squarePrefab;
+
+    Tetromino menuParent;
+    int currentAmountOfPlatforms;
     bool isDragged = false;
     bool isMenuItem = true;
     TextMeshProUGUI tmPro;
@@ -17,6 +22,7 @@ public class Tetromino : MonoBehaviour
     {
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         tmPro.text = isMenuItem ? amountOfPlatforms.ToString() : "";
+        currentAmountOfPlatforms = amountOfPlatforms;
     }
 
     // Update is called once per frame
@@ -38,24 +44,57 @@ public class Tetromino : MonoBehaviour
                 else
                 {
                     Destroy(gameObject);
+                    menuParent.currentAmountOfPlatforms++;
+                    menuParent.updateText();
                 }
             }
         }
-        if(amountOfPlatforms == 0 && isMenuItem)
+        if(currentAmountOfPlatforms == 0 && isMenuItem)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
     public void DragNew()
     {
-        if(isMenuItem && amountOfPlatforms > 0)
+        if(isMenuItem && currentAmountOfPlatforms > 0)
         {
             GameObject instantiatedTetromino = Instantiate(tetrominoPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             instantiatedTetromino.GetComponent<Tetromino>().isDragged = true;
             instantiatedTetromino.GetComponent<Tetromino>().isMenuItem = false;
-            amountOfPlatforms--;
-            tmPro.text = amountOfPlatforms.ToString();
+            instantiatedTetromino.GetComponent<Tetromino>().menuParent = this;
+            currentAmountOfPlatforms--;
+            updateText();
+        }
+    }
+
+    public void updateText()
+    {
+        tmPro.text = currentAmountOfPlatforms.ToString();
+    }
+
+    public void fastForward()
+    {
+        if(isTree && !isMenuItem)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                Instantiate(squarePrefab, this.transform.position + new Vector3(1 * (i + 1), 0, 0), Quaternion.identity);
+            }
+        }
+    }
+    public void Reset()
+    {
+        if (isMenuItem)
+        {
+            currentAmountOfPlatforms = amountOfPlatforms;
+            gameObject.SetActive(true);
+            if (tmPro != null)
+                updateText();
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 }
