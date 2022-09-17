@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private BoxCollider2D boxCollider2D;
     public Animator animator;
-    public GameManager gameManager;
+    private GameManager gameManager;
     
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float jumpForce = 10.0f;
