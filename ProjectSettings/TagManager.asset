@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+<<<<<<< HEAD
   - DeathZone
+=======
+  - JumpTrigger
+>>>>>>> 6a8d666142368160e9d823e36e46455340948ec2
   layers:
   - Default
   - TransparentFX

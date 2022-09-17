@@ -8,13 +8,14 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
     private BoxCollider2D boxCollider2D;
-    private float movementSpeed = 1.0f;
-    private float jumpForce = 10.0f;
     private bool AttemptIsStarted = false;
 
     public GameManager gameManager;
+    [SerializeField] private float movementSpeed = 1.0f;
+    [SerializeField] private float jumpForce = 10.0f;
 
     [SerializeField] private LayerMask platformLayerMask;
+    [SerializeField] private BoxCollider2D jumpTriggerBox2D;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class Movement : MonoBehaviour
             boxCollider2D.bounds.extents.y + extraHeigthText, platformLayerMask);
         return rayCastHit.collider != null;
     }
-
+    
     //Function called by UI Button to start an attempt
     public void StartAttempt()
     {
@@ -60,7 +61,16 @@ public class Movement : MonoBehaviour
             Destroy(this.gameObject);
             gameManager.RespawnPlayer();
         }
+        
+        if (IsGrounded() && other.CompareTag("JumpTrigger"))
+        {
+            Jump();
+        }
     }
     
-    
+    void Jump()
+    {
+        rigidbody2D.velocity = Vector2.up * jumpForce;
+    }
 }
+
