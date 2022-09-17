@@ -8,11 +8,14 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
     private BoxCollider2D boxCollider2D;
-
+    public Animator animator;
     public GameManager gameManager;
+    
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float jumpForce = 10.0f;
 
+    private bool canLand = false;
+    
     [SerializeField] private LayerMask platformLayerMask;
     [SerializeField] private BoxCollider2D jumpTriggerBox2D;
 
@@ -30,6 +33,7 @@ public class Movement : MonoBehaviour
         if (gameManager.getAttemptIsStarted())
         {
             transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
+            animator.SetFloat("Speed", Mathf.Abs(movementSpeed));
         }
     }
 
@@ -44,6 +48,12 @@ public class Movement : MonoBehaviour
     //OnTriggerEnter function to deal with all the triggers
     public void OnTriggerEnter2D(Collider2D other)
     {
+        if (canLand && other.CompareTag("Ground"))
+        {
+            canLand = false;
+            animator.SetBool("IsJumping", false);
+        }
+        
         if (other.CompareTag("DeathZone"))
         {
             Destroy(this.gameObject);
@@ -53,7 +63,10 @@ public class Movement : MonoBehaviour
         if (IsGrounded() && other.CompareTag("JumpTrigger"))
         {
             Jump();
+            animator.SetBool("IsJumping", true);
+            canLand = true;
         }
+        
     }
     
     void Jump()

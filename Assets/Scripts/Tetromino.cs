@@ -30,7 +30,6 @@ public class Tetromino : MonoBehaviour
             {
                 if(mousePositionWorldPoint.y > -3.0f) 
                 {
-                    Debug.Log("placed");
                     isDragged = false;
 
                     foreach(PlatformEffector2D pe in GetComponentsInChildren<PlatformEffector2D>())

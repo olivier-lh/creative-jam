@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        Debug.Log("called");
         AttemptIsStarted = false;
         //Instantiate(player, respawnPoint.transform);
     }
