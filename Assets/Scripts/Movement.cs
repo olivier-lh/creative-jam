@@ -8,7 +8,6 @@ public class Movement : MonoBehaviour
 {
     private Rigidbody2D rigidbody2D;
     private BoxCollider2D boxCollider2D;
-    private bool AttemptIsStarted = false;
 
     public GameManager gameManager;
     [SerializeField] private float movementSpeed = 1.0f;
@@ -28,14 +27,9 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (AttemptIsStarted)
+        if (gameManager.getAttemptIsStarted())
         {
             transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
-            if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
-            {
-                rigidbody2D.velocity = Vector2.up * jumpForce;
-       
-            }
         }
     }
 
@@ -45,12 +39,6 @@ public class Movement : MonoBehaviour
         RaycastHit2D rayCastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down,
             boxCollider2D.bounds.extents.y + extraHeigthText, platformLayerMask);
         return rayCastHit.collider != null;
-    }
-    
-    //Function called by UI Button to start an attempt
-    public void StartAttempt()
-    {
-        AttemptIsStarted = true;
     }
 
     //OnTriggerEnter function to deal with all the triggers

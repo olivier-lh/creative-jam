@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject respawnPoint;
+    private bool AttemptIsStarted = false;
         
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,17 @@ public class GameManager : MonoBehaviour
     public void RespawnPlayer()
     {
         Debug.Log("called");
+        AttemptIsStarted = false;
         //Instantiate(player, respawnPoint.transform);
+    }
+
+    public void StartAttempt()
+    {
+        AttemptIsStarted = true;
+    }
+
+    public bool getAttemptIsStarted()
+    {
+        return AttemptIsStarted;
     }
 }
