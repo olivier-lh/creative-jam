@@ -14,6 +14,9 @@ public class Movement : MonoBehaviour
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float jumpForce = 10.0f;
 
+    [SerializeField] private LayerMask platformLayerMask;
+
+    Vector2 characterDirection = new Vector2(1, 0);
     private bool canLand = false;
     
     [SerializeField] private BoxCollider2D jumpTriggerBox2D;
@@ -32,7 +35,7 @@ public class Movement : MonoBehaviour
     {
         if (gameManager.getAttemptIsStarted())
         {
-            transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
+            transform.Translate(characterDirection * movementSpeed * Time.deltaTime);
             animator.SetFloat("Speed", Mathf.Abs(movementSpeed));
         }
     }
@@ -60,13 +63,17 @@ public class Movement : MonoBehaviour
             gameManager.RespawnPlayer();
         }
         
-        if (IsGrounded() && other.CompareTag("JumpTrigger"))
+        if (other.CompareTag("JumpTrigger"))
         {
             Jump();
             animator.SetBool("IsJumping", true);
             canLand = true;
         }
-        
+
+        if(other.CompareTag("FlipTrigger"))
+        {
+            characterDirection.x *= -1;
+        }
     }
     
     void Jump()
