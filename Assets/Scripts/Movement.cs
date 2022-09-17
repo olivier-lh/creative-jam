@@ -73,6 +73,8 @@ public class Movement : MonoBehaviour
         if(other.CompareTag("FlipTrigger"))
         {
             characterDirection.x *= -1;
+            Vector3 inversedScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            transform.localScale = inversedScale;
         }
     }
     
