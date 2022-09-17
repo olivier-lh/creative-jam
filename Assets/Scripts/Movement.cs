@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class Movement : MonoBehaviour
     private BoxCollider2D boxCollider2D;
     private float movementSpeed = 1.0f;
     private float jumpForce = 10.0f;
+    private bool AttemptIsStarted = false;
+
+    public GameManager gameManager;
 
     [SerializeField] private LayerMask platformLayerMask;
 
@@ -16,17 +21,20 @@ public class Movement : MonoBehaviour
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
+        rigidbody2D.freezeRotation = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
-        Debug.Log(IsGrounded());
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+        if (AttemptIsStarted)
         {
-            rigidbody2D.velocity = Vector2.up * jumpForce;
+            transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
+            if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
+            {
+                rigidbody2D.velocity = Vector2.up * jumpForce;
        
+            }
         }
     }
 
@@ -37,4 +45,22 @@ public class Movement : MonoBehaviour
             boxCollider2D.bounds.extents.y + extraHeigthText, platformLayerMask);
         return rayCastHit.collider != null;
     }
+
+    //Function called by UI Button to start an attempt
+    public void StartAttempt()
+    {
+        AttemptIsStarted = true;
+    }
+
+    //OnTriggerEnter function to deal with all the triggers
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("DeathZone"))
+        {
+            Destroy(this.gameObject);
+            gameManager.RespawnPlayer();
+        }
+    }
+    
+    
 }
