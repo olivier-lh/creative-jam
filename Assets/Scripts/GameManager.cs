@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
         Debug.Log(respawnPoint.transform.position);
         Instantiate(player, respawnPoint.transform.position, Quaternion.identity);
         foreach (Tetromino tetro in Resources.FindObjectsOfTypeAll(typeof(Tetromino)))
-            tetro.Reset();
+            tetro.ResetTetro();
     }
 
     public void StartAttempt()

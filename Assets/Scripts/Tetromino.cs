@@ -13,11 +13,13 @@ public class Tetromino : MonoBehaviour
     [SerializeField] GameObject squarePrefab;
     [SerializeField] Sprite bigTreeSprite;
     [SerializeField] Sprite rockSprite;
+    [SerializeField] bool isMenuItem = true;
+    [SerializeField] bool isLevelBlock = false;
 
     Tetromino menuParent;
     int currentAmountOfPlatforms;
     bool isDragged = false;
-    bool isMenuItem = true;
+    
     bool growsRight = true;
     TextMeshProUGUI tmPro;
 
@@ -99,7 +101,7 @@ public class Tetromino : MonoBehaviour
 
     public void updateText()
     {
-        tmPro.text = currentAmountOfPlatforms.ToString();
+        tmPro.text = isMenuItem && !isLevelBlock ? currentAmountOfPlatforms.ToString() : "";
     }
 
     public void fastForward()
@@ -122,12 +124,20 @@ public class Tetromino : MonoBehaviour
             StartCoroutine(ErodeRocks());
         }
     }
-    public void Reset()
+    public void ResetTetro()
     {
-        if (isMenuItem)
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            GameObject childObject = this.transform.GetChild(i).gameObject;
+
+            if (childObject.GetComponent<SpriteRenderer>() != null)
+            {
+                childObject.SetActive(true);
+            }
+        }
+        if (isMenuItem || isLevelBlock)
         {
             currentAmountOfPlatforms = amountOfPlatforms;
-            gameObject.SetActive(true);
             if (tmPro != null)
                 updateText();
         }
@@ -140,13 +150,13 @@ public class Tetromino : MonoBehaviour
     private IEnumerator ErodeRocks()
     {
         int numOfChildren = this.transform.childCount;
-        for (int i = 0; i < numOfChildren - 1; i++)
+        for (int i = 0; i < numOfChildren; i++)
         {
-            GameObject childObject = this.transform.GetChild(1).gameObject;
+            GameObject childObject = this.transform.GetChild(i).gameObject;
 
             if (childObject.GetComponent<SpriteRenderer>() != null)
             {
-                Destroy(childObject);
+                childObject.SetActive(false);
             }
             if (childObject != null)
             {
