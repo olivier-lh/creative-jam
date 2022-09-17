@@ -70,10 +70,6 @@ public class Tetromino : MonoBehaviour
                 }
             }
         }
-        if(currentAmountOfPlatforms == 0 && isMenuItem)
-        {
-            gameObject.SetActive(false);
-        }
     }
 
     public void DragNew()
