@@ -8,6 +8,7 @@ public class Tetromino : MonoBehaviour
 {
     [SerializeField] GameObject tetrominoPrefab;
     [SerializeField] int amountOfPlatforms;
+    Tetromino menuParent;
     int currentAmountOfPlatforms;
     bool isDragged = false;
     bool isMenuItem = true;
@@ -41,6 +42,8 @@ public class Tetromino : MonoBehaviour
                 else
                 {
                     Destroy(gameObject);
+                    menuParent.currentAmountOfPlatforms++;
+                    menuParent.updateText();
                 }
             }
         }
@@ -57,9 +60,15 @@ public class Tetromino : MonoBehaviour
             GameObject instantiatedTetromino = Instantiate(tetrominoPrefab, new Vector3(0, 0, 0), Quaternion.identity);
             instantiatedTetromino.GetComponent<Tetromino>().isDragged = true;
             instantiatedTetromino.GetComponent<Tetromino>().isMenuItem = false;
+            instantiatedTetromino.GetComponent<Tetromino>().menuParent = this;
             currentAmountOfPlatforms--;
-            tmPro.text = currentAmountOfPlatforms.ToString();
+            updateText();
         }
+    }
+
+    public void updateText()
+    {
+        tmPro.text = currentAmountOfPlatforms.ToString();
     }
 
     public void Reset()
@@ -68,8 +77,8 @@ public class Tetromino : MonoBehaviour
         {
             currentAmountOfPlatforms = amountOfPlatforms;
             gameObject.SetActive(true);
-            if(tmPro != null)
-                tmPro.text = currentAmountOfPlatforms.ToString();
+            if (tmPro != null)
+                updateText();
         }
         else
         {
