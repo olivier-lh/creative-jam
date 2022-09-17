@@ -51,6 +51,7 @@ public class Movement : MonoBehaviour
     //OnTriggerEnter function to deal with all the triggers
     public void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.name);
         if (canLand && other.CompareTag("Ground"))
         {
             canLand = false;
@@ -70,7 +71,7 @@ public class Movement : MonoBehaviour
             canLand = true;
         }
 
-        if(other.CompareTag("FlipTrigger"))
+        if(other.CompareTag("FlipTrigger") || other.CompareTag("Ground"))
         {
             characterDirection.x *= -1;
             Vector3 inversedScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);

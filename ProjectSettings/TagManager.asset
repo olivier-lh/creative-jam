@@ -9,6 +9,7 @@ TagManager:
   - FlipTrigger
   - DeathZone
   - Square
+  - PlayerCollider
   layers:
   - Default
   - TransparentFX
