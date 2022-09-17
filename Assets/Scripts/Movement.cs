@@ -14,7 +14,8 @@ public class Movement : MonoBehaviour
     [SerializeField] private float jumpForce = 10.0f;
 
     [SerializeField] private LayerMask platformLayerMask;
-    [SerializeField] private BoxCollider2D jumpTriggerBox2D;
+
+    Vector2 characterDirection = new Vector2(1, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class Movement : MonoBehaviour
     {
         if (gameManager.getAttemptIsStarted())
         {
-            transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
+            transform.Translate(characterDirection * movementSpeed * Time.deltaTime);
         }
     }
 
@@ -44,6 +45,7 @@ public class Movement : MonoBehaviour
     //OnTriggerEnter function to deal with all the triggers
     public void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(other.tag);
         if (other.CompareTag("DeathZone"))
         {
             Destroy(this.gameObject);
@@ -53,6 +55,11 @@ public class Movement : MonoBehaviour
         if (IsGrounded() && other.CompareTag("JumpTrigger"))
         {
             Jump();
+        }
+
+        if(other.CompareTag("FlipTrigger"))
+        {
+            characterDirection.x *= -1;
         }
     }
     
