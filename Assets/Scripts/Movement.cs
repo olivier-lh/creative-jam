@@ -52,7 +52,7 @@ public class Movement : MonoBehaviour
             gameManager.RespawnPlayer();
         }
         
-        if (IsGrounded() && other.CompareTag("JumpTrigger"))
+        if (other.CompareTag("JumpTrigger"))
         {
             Jump();
         }
