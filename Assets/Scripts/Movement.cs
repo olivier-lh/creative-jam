@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    float horizontalMove = 0f;
     private Rigidbody2D rigidbody2D;
     private BoxCollider2D boxCollider2D;
     private float movementSpeed = 1.0f;
     private float jumpForce = 10.0f;
 
     [SerializeField] private LayerMask platformLayerMask;
-
-    bool jump = false;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +22,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector2.right * movementSpeed * Time.deltaTime);
-       
+        Debug.Log(IsGrounded());
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space))
         {
             rigidbody2D.velocity = Vector2.up * jumpForce;
@@ -35,8 +32,9 @@ public class Movement : MonoBehaviour
 
     private bool IsGrounded()
     {
-        float extraHeigthText = 0.01f;
-        RaycastHit2D rayCastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down, boxCollider2D.bounds.extents.y + extraHeigthText);
+        float extraHeigthText = 0.2f;
+        RaycastHit2D rayCastHit = Physics2D.Raycast(boxCollider2D.bounds.center, Vector2.down,
+            boxCollider2D.bounds.extents.y + extraHeigthText, platformLayerMask);
         return rayCastHit.collider != null;
     }
 }
