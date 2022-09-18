@@ -12,7 +12,6 @@ public class Tetromino : MonoBehaviour
     [SerializeField] bool isRock;
     [SerializeField] GameObject squarePrefab;
     [SerializeField] Sprite bigTreeSprite;
-    [SerializeField] Sprite rockSprite;
     [SerializeField] bool isMenuItem = true;
     [SerializeField] bool isLevelBlock = false;
 
@@ -20,12 +19,17 @@ public class Tetromino : MonoBehaviour
     int currentAmountOfPlatforms;
     bool isDragged = false;
 
+    private Sprite rock_0, rock_1, rock_2;
+
     bool growsRight = true;
     TextMeshProUGUI tmPro;
 
     // Start is called before the first frame update
     void Start()
     {
+        rock_0 = Resources.Load<Sprite>("rock_0");
+        rock_1 = Resources.Load<Sprite>("rock_1");
+        rock_2 = Resources.Load<Sprite>("rock_2");
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         tmPro.text = isMenuItem ? amountOfPlatforms.ToString() : "";
         currentAmountOfPlatforms = amountOfPlatforms;
@@ -33,7 +37,7 @@ public class Tetromino : MonoBehaviour
         {
             foreach (SpriteRenderer sr in transform.GetComponentsInChildren<SpriteRenderer>())
             {
-                sr.sprite = rockSprite;
+                sr.sprite = rock_0;
             }
         }
         if (isTree)
@@ -139,10 +143,12 @@ public class Tetromino : MonoBehaviour
         for (int i = 0; i < this.transform.childCount; i++)
         {
             GameObject childObject = this.transform.GetChild(i).gameObject;
-
-            if (childObject.GetComponent<SpriteRenderer>() != null)
+            SpriteRenderer sr = childObject.GetComponent<SpriteRenderer>();
+            if (sr != null)
             {
                 childObject.SetActive(true);
+                if (isRock)
+                    sr.sprite = rock_0;
             }
         }
         if (isMenuItem || isLevelBlock)
@@ -163,15 +169,20 @@ public class Tetromino : MonoBehaviour
         for (int i = 0; i < numOfChildren; i++)
         {
             GameObject childObject = this.transform.GetChild(i).gameObject;
+            SpriteRenderer childSr = childObject.GetComponent<SpriteRenderer>();
 
             if (childObject.GetComponent<SpriteRenderer>() != null)
             {
+                childSr.sprite = rock_1;
+                yield return new WaitForSeconds(0.5f);
+                childSr.sprite = rock_2;
+                yield return new WaitForSeconds(0.5f);
                 childObject.SetActive(false);
             }
-            if (childObject != null)
-            {
-                yield return new WaitForSeconds(1);
-            }
+            //if (childObject != null)
+            //{
+            //    yield return new WaitForSeconds(1);
+            //}
         }
     }
 }
