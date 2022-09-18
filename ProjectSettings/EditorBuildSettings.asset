@@ -11,4 +11,25 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestScene.unity
     guid: 916bb2e33c4144e49b87be0b20a1b81e
+  - enabled: 1
+    path: Assets/Scenes/LevelSelect.unity
+    guid: db0006b9f3611374b9f951fe5ed68e7e
+  - enabled: 1
+    path: Assets/Scenes/Levels/PlantTutorial.unity
+    guid: c29f123824223204e9030f2bd6583e76
+  - enabled: 1
+    path: Assets/Scenes/Levels/BackAndForth.unity
+    guid: bfda0121532dcb241ae533a1c204f3c4
+  - enabled: 1
+    path: Assets/Scenes/Levels/Hop.unity
+    guid: f2c9bfdf530687540895196e7451fb6e
+  - enabled: 1
+    path: Assets/Scenes/Levels/Teh_sooper_levul_of_d00m.unity
+    guid: 9d2331287e0459c4d9c63f3b5fe0b13d
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level.unity
+    guid: 9a11e2192f187ca4495125f3cd0c702d
+  - enabled: 1
+    path: Assets/Scenes/Levels/WallGap.unity
+    guid: 4ae3002d6785ed246883ecf4814cc5c1
   m_configObjects: {}
