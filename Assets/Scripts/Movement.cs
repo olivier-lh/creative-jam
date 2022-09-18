@@ -70,8 +70,9 @@ public class Movement : MonoBehaviour
             canLand = true;
         }
 
-        if(other.CompareTag("FlipTrigger"))
+        if(other.CompareTag("FlipTrigger") || other.CompareTag("Ground"))
         {
+            Debug.Log(other.name);
             characterDirection.x *= -1;
             Vector3 inversedScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             transform.localScale = inversedScale;
