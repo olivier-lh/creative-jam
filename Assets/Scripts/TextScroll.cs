@@ -13,7 +13,7 @@ public class TextScroll : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textObject; //Text gameobject
     [SerializeField] private GameObject textBox; //Whole text box
     [SerializeField] private GameObject continueButton;
-    private int currentDisplayingText = 0;
+    public int currentDisplayingText = 0;
 
     public void Start()
     {
