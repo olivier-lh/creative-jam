@@ -55,7 +55,6 @@ MonoBehaviour:
   isRock: 1
   squarePrefab: {fileID: 0}
   bigTreeSprite: {fileID: 0}
-  rockSprite: {fileID: 0}
   isMenuItem: 0
   isLevelBlock: 1
 --- !u!1 &4962736611004529260
@@ -349,6 +348,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
 --- !u!4 &4227889902508975889 stripped
@@ -410,6 +417,14 @@ PrefabInstance:
     - target: {fileID: 7524422127153836525, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_Name
       value: Square (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
@@ -473,6 +488,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Square
       objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
 --- !u!4 &1944659597784019091 stripped
@@ -534,6 +557,14 @@ PrefabInstance:
     - target: {fileID: 7524422127153836525, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_Name
       value: Square (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
