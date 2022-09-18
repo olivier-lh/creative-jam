@@ -6,19 +6,6 @@ using UnityEngine.UI;
 
 public class LevelSelectManager : MonoBehaviour
 {
-
-    //Level completed bools
-    public bool PlantTutorialCompleted = false;
-    
-    //Level buttons objects
-    [Header("Buttons")]
-    [SerializeField] private GameObject plantTutorialBtn;
-    
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void Return()
     {
         SceneManager.LoadScene("MainMenu");
@@ -52,5 +39,20 @@ public class LevelSelectManager : MonoBehaviour
     public void LoadLevel()
     {
         SceneManager.LoadScene("Level");
+    }
+
+    public void LoadDoom()
+    {
+        SceneManager.LoadScene("teh_d00m_str1kes_b4ck");
+    }
+
+    public void LoadPage1()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
+    
+    public void LoadPage2()
+    {
+        SceneManager.LoadScene("LevelSelect2");
     }
 }
