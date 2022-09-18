@@ -8,18 +8,27 @@ using Button = UnityEngine.UIElements.Button;
 
 public class TextScroll : MonoBehaviour
 {
-    [SerializeField] private string[] textValue;
+    [SerializeField] private string[] textValue; // List of texts for the scene
     [SerializeField] private float textSpeed = 0.1f;
-    [SerializeField] private TextMeshProUGUI textObject;
-    [SerializeField] private GameObject textBox;
+    [SerializeField] private TextMeshProUGUI textObject; //Text gameobject
+    [SerializeField] private GameObject textBox; //Whole text box
     [SerializeField] private GameObject continueButton;
-    private int currentDisplayingText = 0;
+    public int currentDisplayingText = 0;
+
+    public void Start()
+    {
+        if (textValue.Length > 0)
+        {
+            StartCoroutine(AnimateText());
+        }
+    }
 
     public void ActivateText()
     {
         if (currentDisplayingText == textValue.Length)
         {
             StopCoroutine(AnimateText());
+            
             textBox.SetActive(false);
         }
         else
@@ -30,7 +39,6 @@ public class TextScroll : MonoBehaviour
 
     IEnumerator AnimateText()
     {
-        //Debug.Log(textValue[currentDisplayingText]);
         for (int i = 0; i < textValue[currentDisplayingText].Length + 1; i++)
         {
             textObject.text = textValue[currentDisplayingText].Substring(0, i);
