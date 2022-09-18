@@ -18,6 +18,7 @@ public class Tetromino : MonoBehaviour
     Tetromino menuParent;
     int currentAmountOfPlatforms;
     bool isDragged = false;
+    Coroutine co;
 
     private Sprite rock_0, rock_1, rock_2;
 
@@ -150,11 +151,17 @@ public class Tetromino : MonoBehaviour
         }
         else if(isRock && !isMenuItem)
         {
-            StartCoroutine(ErodeRocks());
+            co = StartCoroutine(ErodeRocks());
         }
     }
     public void ResetTetro()
     {
+        if(isRock)
+        {
+            // Debug.Log("stopped erode rocks coroutine");
+            if(co != null)
+                StopCoroutine(co);
+        }
         for (int i = 0; i < this.transform.childCount; i++)
         {
             GameObject childObject = this.transform.GetChild(i).gameObject;
