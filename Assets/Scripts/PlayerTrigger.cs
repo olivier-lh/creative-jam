@@ -8,17 +8,9 @@ public class PlayerTrigger : MonoBehaviour
     //bool callOnce = false;
     // Start is called before the first frame update
     bool ready = true;
-    int stayCount = 0;
-    int maxStayCount = 5;
     void Start()
     {
         parent = this.transform.parent.gameObject;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void OnTriggerEnter2D(Collider2D other)

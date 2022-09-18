@@ -58,6 +58,7 @@ public class Movement : MonoBehaviour
     //OnTriggerEnter function to deal with all the triggers
     public void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("Trigger detected");
         if (canLand && other.CompareTag("Ground"))
         {
             canLand = false;

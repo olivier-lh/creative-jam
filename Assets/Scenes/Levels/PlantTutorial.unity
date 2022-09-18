@@ -2719,21 +2719,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1543250511881582238, guid: 775af0ee1c1bc114480b9af40b888d33, type: 3}
       propertyPath: textValue.Array.data[0]
-      value: "Voici un nouvel outil \xE0 la collection, la pousse v\xE9g\xE9tale"
+      value: "Voici un nouvel outil \xE0 la collection, la pousse v\xE9g\xE9tale
+        !"
       objectReference: {fileID: 0}
     - target: {fileID: 1543250511881582238, guid: 775af0ee1c1bc114480b9af40b888d33, type: 3}
       propertyPath: textValue.Array.data[1]
-      value: "Mais pour \xEAtre utile, on doit aller dans le future pour que la pousse
-        deviennent un arbre!"
+      value: "Mais pour \xEAtre utile, on doit aller dans le futur pour que la pousse
+        devienne un arbre!"
       objectReference: {fileID: 0}
     - target: {fileID: 1543250511881582238, guid: 775af0ee1c1bc114480b9af40b888d33, type: 3}
       propertyPath: textValue.Array.data[2]
       value: "Lorsque Fido entre en contact avec cette ic\xF4ne, il voyage dans le
-        future!"
+        futur!"
       objectReference: {fileID: 0}
     - target: {fileID: 1543250511881582238, guid: 775af0ee1c1bc114480b9af40b888d33, type: 3}
       propertyPath: textValue.Array.data[3]
-      value: "Il vaut mieux de voir pour comprendre, place la pousse sur le c\xF4t\xE9
+      value: "Il vaut mieux le voir pour comprendre, place la pousse sur le c\xF4t\xE9
         droit du bloc qui clignote et lance une tentative."
       objectReference: {fileID: 0}
     - target: {fileID: 1543250512346336824, guid: 775af0ee1c1bc114480b9af40b888d33, type: 3}
