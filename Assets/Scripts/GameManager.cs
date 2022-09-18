@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject respawnPoint;
     private bool AttemptIsStarted = false;
+    private bool levelIsComplete = false;
+    
+    [SerializeField] private GameObject endScreen;
         
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,10 @@ public class GameManager : MonoBehaviour
         {
             foreach (Tetromino tetro in Resources.FindObjectsOfTypeAll(typeof(Tetromino)))
                 tetro.fastForward();
+        }
+        if (levelIsComplete)
+        {
+            endScreen.SetActive(true);
         }
     }
 
@@ -47,4 +55,15 @@ public class GameManager : MonoBehaviour
     {
         return AttemptIsStarted;
     }
+
+    public void CompleteLevel()
+    {
+        levelIsComplete = true;
+    }
+
+    public void LoadLvlSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
+    }
+
 }
