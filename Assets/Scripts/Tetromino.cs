@@ -19,7 +19,7 @@ public class Tetromino : MonoBehaviour
     Tetromino menuParent;
     int currentAmountOfPlatforms;
     bool isDragged = false;
-    
+
     bool growsRight = true;
     TextMeshProUGUI tmPro;
 
@@ -29,47 +29,34 @@ public class Tetromino : MonoBehaviour
         tmPro = GetComponentInChildren<TextMeshProUGUI>();
         tmPro.text = isMenuItem ? amountOfPlatforms.ToString() : "";
         currentAmountOfPlatforms = amountOfPlatforms;
-        if(isRock)
+        if (isRock)
         {
-            foreach(SpriteRenderer sr in transform.GetComponentsInChildren<SpriteRenderer>())
+            foreach (SpriteRenderer sr in transform.GetComponentsInChildren<SpriteRenderer>())
             {
                 sr.sprite = rockSprite;
             }
+        }
+        if (isTree)
+        {
+            PlaceTree();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(isDragged)
+        if (isDragged)
         {
             Vector3 mousePositionWorldPoint = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y));
             this.transform.position = new Vector3((float)Math.Floor(mousePositionWorldPoint.x) + 0.5f, (float)Math.Floor(mousePositionWorldPoint.y) + 0.5f, 0);
-            if(!Input.GetMouseButton(0))
+            if (!Input.GetMouseButton(0))
             {
                 bool validPlacement = true;
                 if (isTree)
                 {
-                    Collider2D[] intersectingRight = Physics2D.OverlapCircleAll(new Vector3(transform.position.x + 1f, transform.position.y, 0), 0.01f);
-                    Collider2D[] intersectingLeft = Physics2D.OverlapCircleAll(new Vector3(transform.position.x - 1f, transform.position.y, 0), 0.01f);
-                    
-                    if (intersectingRight.Length != 0)
-                    {
-                        growsRight = false;
-                        gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
-                    }
-                    else if (intersectingLeft.Length != 0)
-                    {
-                        growsRight = true;
-                        gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
-                    }
-                    else
-                    {
-                        Debug.Log("Invalid tree placement");
-                        validPlacement = false;
-                    }
+                    validPlacement = PlaceTree();
                 }
-                if (mousePositionWorldPoint.y > -3.0f && validPlacement) 
+                if (/*mousePositionWorldPoint.y > -3.0f && */validPlacement)
                 {
                     isDragged = false;
 
@@ -84,6 +71,29 @@ public class Tetromino : MonoBehaviour
                 }
             }
         }
+    }
+
+    private bool PlaceTree()
+    {
+        Collider2D[] intersectingRight = Physics2D.OverlapCircleAll(new Vector3(transform.position.x + 1f, transform.position.y, 0), 0.01f);
+        Collider2D[] intersectingLeft = Physics2D.OverlapCircleAll(new Vector3(transform.position.x - 1f, transform.position.y, 0), 0.01f);
+
+        if (intersectingRight.Length != 0)
+        {
+            growsRight = false;
+            gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
+        }
+        else if (intersectingLeft.Length != 0)
+        {
+            growsRight = true;
+            gameObject.GetComponentInChildren<SpriteRenderer>().flipX = !growsRight;
+        }
+        else
+        {
+            Debug.Log("Invalid tree placement");
+            return false;
+        }
+        return true;
     }
 
     public void DragNew()

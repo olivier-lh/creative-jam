@@ -27,6 +27,10 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        foreach(Movement player in Resources.FindObjectsOfTypeAll(typeof(Movement)))
+        {
+            Destroy(player.gameObject);
+        }
         AttemptIsStarted = false;
         Debug.Log(respawnPoint.transform.position);
         Instantiate(player, respawnPoint.transform.position, Quaternion.identity);
