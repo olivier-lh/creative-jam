@@ -51,6 +51,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tetrominoPrefab: {fileID: 6374304064631939357}
   amountOfPlatforms: 2
+  isTree: 0
+  isRock: 0
+  squarePrefab: {fileID: 0}
+  bigTreeSprite: {fileID: 0}
+  rockSprite: {fileID: 0}
+  isMenuItem: 1
+  isLevelBlock: 0
 --- !u!1 &6792374069402664707
 GameObject:
   m_ObjectHideFlags: 0

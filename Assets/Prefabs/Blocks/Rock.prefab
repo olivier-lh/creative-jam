@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5812590041300659385}
   - component: {fileID: 6199517064615140445}
   m_Layer: 0
-  m_Name: Tree
+  m_Name: Rock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -51,7 +51,7 @@ MonoBehaviour:
   isTree: 1
   isRock: 0
   squarePrefab: {fileID: 7243565246716030331, guid: 7dcef3b68062e464b98ff9f19c96a245, type: 3}
-  bigTreeSprite: {fileID: 21300000, guid: 570e07cc6fbb42d4e9f39bc0cd835f27, type: 3}
+  bigTreeSprite: {fileID: 21300000, guid: 0d8fe417af7326d4694f335485ee6d67, type: 3}
   rockSprite: {fileID: 0}
   isMenuItem: 1
   isLevelBlock: 0
@@ -353,7 +353,7 @@ PrefabInstance:
     - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: ad2924a4ec37c744e9de3675c8ca05ec, type: 3}
+      objectReference: {fileID: 21300000, guid: 6ebca8f92badc094caf396fab0582e1b, type: 3}
     - target: {fileID: 7815702188367753840, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_DrawMode
       value: 1

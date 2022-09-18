@@ -70,7 +70,7 @@ public class Movement : MonoBehaviour
             canLand = true;
         }
 
-        if(other.CompareTag("FlipTrigger") || other.CompareTag("Ground"))
+        if(other.CompareTag("FlipTrigger"))
         {
             Debug.Log(other.name);
             characterDirection.x *= -1;

@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: -7202632981416346246}
-  movementSpeed: 1
-  jumpForce: 10
+  movementSpeed: 3
+  jumpForce: 6
   platformLayerMask:
     serializedVersion: 2
     m_Bits: 0

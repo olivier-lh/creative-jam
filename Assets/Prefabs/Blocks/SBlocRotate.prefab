@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1411553853970449704}
   - component: {fileID: 1528326611795408332}
   m_Layer: 0
-  m_Name: SBloc
+  m_Name: SBlocRotate
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalPosition.z
@@ -497,7 +497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3966737861959374023, guid: 522bbb31f75801942911b296d96f8d75, type: 3}
       propertyPath: m_LocalPosition.z
