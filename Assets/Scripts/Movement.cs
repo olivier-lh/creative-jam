@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
     public Animator animator;
-    private GameManager gameManager;
+    private GameManager gm;
     
     [SerializeField] private float movementSpeed = 1.0f;
     [SerializeField] private float jumpForce = 10.0f;
@@ -18,13 +18,14 @@ public class Movement : MonoBehaviour
 
     public Vector2 characterDirection = new Vector2(1, 0);
     public bool canLand = false;
+    private bool shouldBeMoving = true;
     
     [SerializeField] private BoxCollider2D jumpTriggerBox2D;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        gm = FindObjectOfType<GameManager>();
         rb = GetComponent<Rigidbody2D>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
         rb.freezeRotation = true;
@@ -33,10 +34,16 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.getAttemptIsStarted())
+        if (gm.getAttemptIsStarted() && shouldBeMoving)
         {
             transform.Translate(characterDirection * movementSpeed * Time.deltaTime);
             animator.SetFloat("Speed", Mathf.Abs(movementSpeed));
+        }
+
+        if (gm.levelIsComplete)
+        {
+            shouldBeMoving = false;
+            animator.SetFloat("Speed", 0);
         }
     }
 
@@ -60,7 +67,7 @@ public class Movement : MonoBehaviour
         if (other.CompareTag("DeathZone"))
         {
             Destroy(this.gameObject);
-            gameManager.RespawnPlayer();
+            gm.RespawnPlayer();
         }
         
         if (other.CompareTag("JumpTrigger"))

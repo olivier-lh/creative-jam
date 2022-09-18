@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject respawnPoint;
     private bool AttemptIsStarted = false;
-    private bool levelIsComplete = false;
+    public bool levelIsComplete = false;
     
     [SerializeField] private GameObject endScreen;
         
