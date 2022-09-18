@@ -28,4 +28,29 @@ public class LevelSelectManager : MonoBehaviour
     {
         SceneManager.LoadScene("PlantTutorial");
     }
+    
+    public void LoadBackAndForth()
+    {
+        SceneManager.LoadScene("BackAndForth");
+    }
+    
+    public void LoadHop()
+    {
+        SceneManager.LoadScene("Hop");
+    }
+    
+    public void LoadSuper()
+    {
+        SceneManager.LoadScene("Teh_sooper_levul_of_d00m");
+    }
+    
+    public void LoadWallGap()
+    {
+        SceneManager.LoadScene("WallGap");
+    }
+    
+    public void LoadLevel()
+    {
+        SceneManager.LoadScene("Level");
+    }
 }
