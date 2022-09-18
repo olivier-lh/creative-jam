@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78f97fd5c3d59c74f99f3eca2eb4902c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: -7202632981416346246}
+  animator: {fileID: 7348429149625853590}
   movementSpeed: 3
   jumpForce: 6
   platformLayerMask:
