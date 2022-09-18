@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EndPoint : MonoBehaviour
 {
+    [SerializeField] private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,6 @@ public class EndPoint : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Movement>() != null) // Check if it's a player
-            Debug.Log("You won!");
+            gm.CompleteLevel();
     }
 }
