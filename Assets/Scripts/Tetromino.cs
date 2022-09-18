@@ -60,6 +60,21 @@ public class Tetromino : MonoBehaviour
                 {
                     validPlacement = PlaceTree();
                 }
+                for (int i = 0; i < this.transform.childCount; i++)
+                {
+                    GameObject childObject = this.transform.GetChild(i).gameObject;
+                    SpriteRenderer sr = childObject.GetComponent<SpriteRenderer>();
+                    if (sr != null)
+                    {
+                        Collider2D[] intersectingCenter = Physics2D.OverlapCircleAll(new Vector3(childObject.transform.position.x, childObject.transform.position.y, 0), 0.01f);
+                        if (intersectingCenter.Length > 2 || childObject.name == "SquareUp" && intersectingCenter.Length > 1)
+                        {
+                            Debug.Log(intersectingCenter.Length);
+                            validPlacement = false;
+                        }
+                    }
+                }
+                
                 if (/*mousePositionWorldPoint.y > -3.0f && */validPlacement)
                 {
                     isDragged = false;
