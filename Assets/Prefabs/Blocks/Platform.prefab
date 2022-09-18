@@ -54,7 +54,6 @@ MonoBehaviour:
   isRock: 0
   squarePrefab: {fileID: 0}
   bigTreeSprite: {fileID: 0}
-  rockSprite: {fileID: 21300000, guid: 54205be7a1beaf24ca059174ea890fd0, type: 3}
   isMenuItem: 1
   isLevelBlock: 0
 --- !u!1 &6792374069402664707
