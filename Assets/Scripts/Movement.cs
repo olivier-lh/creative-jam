@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
-    private Rigidbody2D rigidbody2D;
+    private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
     public Animator animator;
     private GameManager gameManager;
@@ -16,8 +16,8 @@ public class Movement : MonoBehaviour
 
     [SerializeField] private LayerMask platformLayerMask;
 
-    Vector2 characterDirection = new Vector2(1, 0);
-    private bool canLand = false;
+    public Vector2 characterDirection = new Vector2(1, 0);
+    public bool canLand = false;
     
     [SerializeField] private BoxCollider2D jumpTriggerBox2D;
 
@@ -25,9 +25,9 @@ public class Movement : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
-        rigidbody2D = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         boxCollider2D = transform.GetComponent<BoxCollider2D>();
-        rigidbody2D.freezeRotation = true;
+        rb.freezeRotation = true;
     }
 
     // Update is called once per frame
@@ -70,18 +70,23 @@ public class Movement : MonoBehaviour
             canLand = true;
         }
 
-        if(other.CompareTag("FlipTrigger"))
+        if(other.CompareTag("FlipTrigger") /*|| other.CompareTag("Ground")*/)
         {
-            Debug.Log(other.name);
-            characterDirection.x *= -1;
-            Vector3 inversedScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
-            transform.localScale = inversedScale;
+            Invert();
         }
+    }
+
+    public void Invert()
+    {
+        // Debug.Log(other.name);
+        characterDirection.x *= -1;
+        Vector3 inversedScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+        transform.localScale = inversedScale;
     }
     
     void Jump()
     {
-        rigidbody2D.velocity = Vector2.up * jumpForce;
+        rb.velocity = Vector2.up * jumpForce;
     }
 }
 

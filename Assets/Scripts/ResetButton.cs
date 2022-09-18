@@ -24,5 +24,6 @@ public class ResetButton : MonoBehaviour
     {
         foreach (Tetromino tetro in Resources.FindObjectsOfTypeAll(typeof(Tetromino)))
             tetro.ResetTetro();
+        gm.RespawnPlayer();
     }
 }
